@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Joe's Hotdogs</title>
+<link rel="stylesheet" href="hotdog.css">
+</head>
+<body>
+<h1>JOE'S HOTDOGS</h1>
+
+<form id="itemlist">
+    <div class="hdimage">
+        <img src="hotdog.jpg" alt="">
+    </div>
+    <div class= 'quantity'>Quantity
+        <input type="number" id="hotdogamt"> </div>
+    
+     <div class="ffimage">
+        <img src="frenchfries.jpg" alt="">
+    </div>
+    <div class= 'quantity'>Quantity
+    <input type="number" id="ffamt"></div>
+    
+     <div class="drinkimage">
+        <img src="test.png" alt="">
+    </div>
+    <div class= 'quantity'>Quantity
+    <input type="number" id="drinksamt"></div>
+    <button type="button" onclick="price()">Order</button>
+    
+  
+</form>
+    <p id="demo"></p>
+    <p id="order"></p>
+    <p id="output1"></p>
+    
+<script language="javascript" type="text/javascript">
+
+    var baseprice;
+    var discount;
+    var tax = 0.0625;
+    var taxinc = 1.0625;
+    var taxtotal_n;
+    var taxtotal;
+    var total_n;
+    var total;
+    var itemsordered;
+function price(){
+       
+	var price = new Array();
+        price["hotdog"] = "3.25";
+        price["frenchfries"] = "2.00";
+        price["drinks"] = "1.50";
+    var quantity = new Array;
+        quantity["hotdog"]=document.getElementById('hotdogamt').value;
+        quantity["frenchfries"]=document.getElementById('ffamt').value;
+        quantity["drinks"]=document.getElementById('drinksamt').value;
+   
+        itemsordered = "Items and quantity ordered: " + quantity["hotdog"] + " Hotdogs, " + quantity["frenchfries"] +" French Fries, & " + quantity["drinks"] + " Drinks";
+        
+     
+        baseprice = ((price["hotdog"] * quantity["hotdog"]) +(price["frenchfries"] * quantity["frenchfries"]) + (price["drinks"] * quantity["drinks"]));
+        
+        
+        if (baseprice >= 20){
+            discount = (baseprice * 0.9);
+        }
+       else{
+           discount = baseprice;
+       } 
+       
+        taxtotal_n = (discount * tax);
+        taxtotal = taxtotal_n.toFixed(2);
+        
+        total_n = (discount * taxinc);
+        total = total_n.toFixed(2);
+        
+       
+        document.write("Thank you for ordering!" + "<br>" + "<br>");
+        document.write(itemsordered + "<br>");
+        document.write("Subtotal: $" + baseprice + "<br>");
+       
+       if (discount != baseprice){
+           document.write("Discount: $" + ((baseprice * 0.1).toFixed(2)) + "<br>");
+       }
+        else{
+            document.write("No discount, sorry" + "<br>");
+        }
+       document.write("Tax amount: $" + taxtotal + "<br>");
+       document.write("Total: $" + total + "<br>");
+      
+    }
+    
+   
+</script>
+</body>
+</html>
